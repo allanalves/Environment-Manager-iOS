@@ -12,8 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = Service.enviromentUrl(.development)
-        print(url ?? "")
+
+        let preferred = Service.preferredEnvironment()
+        let url = Service.enviromentUrl(preferred)
+        print(url)
     }
 
 }

@@ -17,8 +17,15 @@ class Service {
         case custom
     }
 
+    static func preferredEnvironment() -> Environment {
+        if let env = UserDefaults.standard.string(forKey: "environment") {
+            return Environment(rawValue: env)!
+        }
+        return Environment.production
+    }
+
     static func enviromentUrl(_ environment: Environment) -> URL? {
-        if let path = Bundle.main.url(forResource: "service", withExtension: "plist"),
+        if let path = Bundle.main.url(forResource: "Service", withExtension: "plist"),
             let data = try? Data(contentsOf: path) {
             if let result = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String:String] {
                 return URL(string: result[environment.rawValue]!)

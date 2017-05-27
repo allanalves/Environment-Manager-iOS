@@ -22,7 +22,7 @@
 			<key>Key</key>
 			<string>environment</string>
 			<key>DefaultValue</key>
-			<string>productionUrl</string>
+			<string>production</string>
 			<key>Values</key>
 			<array>
 				<string>production</string>
