@@ -12,6 +12,9 @@
 		B10FA96B1ED9F55600A235F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10FA9691ED9F55600A235F6 /* Main.storyboard */; };
 		B10FA96D1ED9F55600A235F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10FA96C1ED9F55600A235F6 /* Assets.xcassets */; };
 		B10FA9701ED9F55600A235F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10FA96E1ED9F55600A235F6 /* LaunchScreen.storyboard */; };
+		B10FA9781ED9F58000A235F6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B10FA9771ED9F58000A235F6 /* Settings.bundle */; };
+		B10FA97B1ED9FECA00A235F6 /* service.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10FA97A1ED9FECA00A235F6 /* service.plist */; };
+		B10FA97D1ED9FFA600A235F6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10FA97C1ED9FFA600A235F6 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		B10FA96C1ED9F55600A235F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B10FA96F1ED9F55600A235F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B10FA9711ED9F55600A235F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10FA9771ED9F58000A235F6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B10FA97A1ED9FECA00A235F6 /* service.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = service.plist; sourceTree = "<group>"; };
+		B10FA97C1ED9FFA600A235F6 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 		B10FA9591ED9F55500A235F6 = {
 			isa = PBXGroup;
 			children = (
+				B10FA9771ED9F58000A235F6 /* Settings.bundle */,
 				B10FA9641ED9F55600A235F6 /* EnvironmentManager */,
 				B10FA9631ED9F55600A235F6 /* Products */,
 			);
@@ -54,6 +61,7 @@
 		B10FA9641ED9F55600A235F6 /* EnvironmentManager */ = {
 			isa = PBXGroup;
 			children = (
+				B10FA97E1ED9FFB600A235F6 /* Helpers */,
 				B10FA9651ED9F55600A235F6 /* AppDelegate.swift */,
 				B10FA9671ED9F55600A235F6 /* ViewController.swift */,
 				B10FA9691ED9F55600A235F6 /* Main.storyboard */,
@@ -62,6 +70,15 @@
 				B10FA9711ED9F55600A235F6 /* Info.plist */,
 			);
 			path = EnvironmentManager;
+			sourceTree = "<group>";
+		};
+		B10FA97E1ED9FFB600A235F6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B10FA97C1ED9FFA600A235F6 /* Service.swift */,
+				B10FA97A1ED9FECA00A235F6 /* service.plist */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +91,7 @@
 				B10FA95E1ED9F55500A235F6 /* Sources */,
 				B10FA95F1ED9F55500A235F6 /* Frameworks */,
 				B10FA9601ED9F55500A235F6 /* Resources */,
+				B10FA9791ED9FB7700A235F6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -124,13 +142,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10FA9781ED9F58000A235F6 /* Settings.bundle in Resources */,
 				B10FA9701ED9F55600A235F6 /* LaunchScreen.storyboard in Resources */,
 				B10FA96D1ED9F55600A235F6 /* Assets.xcassets in Resources */,
 				B10FA96B1ED9F55600A235F6 /* Main.storyboard in Resources */,
+				B10FA97B1ED9FECA00A235F6 /* service.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B10FA9791ED9FB7700A235F6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\nif [ \"$CONFIGURATION\" == \"Release\" ]; then\nrm -Rf $BUILD_APP_DIR/Settings.bundle\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B10FA95E1ED9F55500A235F6 /* Sources */ = {
@@ -139,6 +175,7 @@
 			files = (
 				B10FA9681ED9F55600A235F6 /* ViewController.swift in Sources */,
 				B10FA9661ED9F55600A235F6 /* AppDelegate.swift in Sources */,
+				B10FA97D1ED9FFA600A235F6 /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
